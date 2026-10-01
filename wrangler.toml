@@ -4,7 +4,7 @@ compatibility_date = "2026-03-30"
 compatibility_flags = ["nodejs_compat"]
 
 [vars]
-UUID = "d342d11e-d424-4598-a35b-4884f67c3b01"
-TROJAN_PASS = "my-secure-trojan-password-2026"
-WS_PATH = "/tunnel-ws"
+UUID = ""
+TROJAN_PASS = ""
+WS_PATH = "/galaxy"
 FALLBACK_URL = "https://www.cloudflare.com"
