@@ -10,7 +10,7 @@ var proxyIP = "lelouch.abrdns.com";      // Fallback ProxyIP
 var dohURL = "https://cloudflare-dns.com/dns-query";
 
 function isValidUUID(uuid) {
-    const uuidRegex = /^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i;
+    const uuidRegex = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
     return uuidRegex.test(uuid);
 }
 
@@ -154,6 +154,14 @@ async function proxyOverWSHandler(request) {
         log("WebSocket pipeTo error", err);
     });
 
+    // Echo back the subprotocol so clients using early-data (ed=...) accept the handshake
+    if (earlyDataHeader) {
+        return new Response(null, {
+            status: 101,
+            webSocket: client,
+            headers: { "Sec-WebSocket-Protocol": earlyDataHeader }
+        });
+    }
     return new Response(null, { status: 101, webSocket: client });
 }
 
@@ -183,7 +191,14 @@ async function handleTCPOutBound(remoteSocket, addressRemote, portRemote, rawCli
         remoteSocketToWS(tcpSocket2, webSocket, responseHeader, null, log);
     }
 
-    const tcpSocket = await connectAndWrite(addressRemote, portRemote);
+    let tcpSocket;
+    try {
+        tcpSocket = await connectAndWrite(addressRemote, portRemote);
+    } catch (err) {
+        log(`Direct connect failed (${err.message}), falling back to proxy pool`);
+        await retry();
+        return;
+    }
     remoteSocketToWS(tcpSocket, webSocket, responseHeader, retry, log);
 }
 
