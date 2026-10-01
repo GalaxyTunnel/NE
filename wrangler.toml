@@ -1,31 +1,10 @@
 name = "orang"
 main = "_worker.js"
-compatibility_date = "2026-03-30"
+compatibility_date = "2024-03-18"
 compatibility_flags = ["nodejs_compat"]
 
 [vars]
 #UUID = ""
 #TROJAN_PASS = ""
 WS_PATH = "/galaxy"
-DOH_PROVIDERS = [
-  {
-    "name": "Cloudflare DoH",
-    "url": "https://cloudflare-dns.com/dns-query",
-    "enabled": true
-  },
-  {
-    "name": "Google DoH",
-    "url": "https://dns.google/dns-query",
-    "enabled": true
-  },
-  {
-    "name": "AliDNS DoH",
-    "url": "https://dns.alidns.com/dns-query",
-    "enabled": true
-  },
-  {
-    "name": "Amazon / Quad9 DoH",
-    "url": "https://dns.quad9.net/dns-query",
-    "enabled": true
-  }
-]
+DOH_PROVIDERS = ["https://cloudflare-dns.com/dns-query","https://dns.google/dns-query","https://dns.alidns.com/dns-query","https://dns.quad9.net/dns-query"]
