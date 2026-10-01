@@ -7,4 +7,25 @@ compatibility_flags = ["nodejs_compat"]
 #UUID = ""
 #TROJAN_PASS = ""
 WS_PATH = "/galaxy"
-FALLBACK_URL = "https://www.cloudflare.com"
+DOH_PROVIDERS = [
+  {
+    "name": "Cloudflare DoH",
+    "url": "https://cloudflare-dns.com/dns-query",
+    "enabled": true
+  },
+  {
+    "name": "Google DoH",
+    "url": "https://dns.google/dns-query",
+    "enabled": true
+  },
+  {
+    "name": "AliDNS DoH",
+    "url": "https://dns.alidns.com/dns-query",
+    "enabled": true
+  },
+  {
+    "name": "Amazon / Quad9 DoH",
+    "url": "https://dns.quad9.net/dns-query",
+    "enabled": true
+  }
+]
