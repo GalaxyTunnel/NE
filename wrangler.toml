@@ -1,5 +1,5 @@
-name = "vless-trojan-tunnel"
-main = "worker.js"
+name = "orang"
+main = "_worker.js"
 compatibility_date = "2026-03-30"
 compatibility_flags = ["nodejs_compat"]
 
