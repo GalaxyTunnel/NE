@@ -6,9 +6,9 @@
 
 import { connect } from 'cloudflare:sockets';
 
-const UUID = 'd342d11e-d424-4598-a35b-4884f67c3b01';
-const TROJAN_PASS = 'my-secure-trojan-password-2026';
-const WS_PATH = '/tunnel-ws';
+const UUID = '';
+const TROJAN_PASS = '';
+const WS_PATH = '/galaxy';
 const PROXY_IPS = [
   "104.28.219.152",
   "104.28.251.154",
